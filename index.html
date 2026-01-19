@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR for Web3 & FinTech | Yassify</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0B0F1A;
+            --text: #EAEAF0;
+            --muted: #A6ADBB;
+            --border: #1E2433;
+            --accentBlue: #5B8CFF;
+            --accentViolet: #7A6CFF;
+            --success: #4FD1C5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Star dust texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.1), transparent),
+                radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.15), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 200%;
+            background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* Top Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 24px 32px;
+            background: rgba(11, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .nav-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav .cta-nav {
+            background: var(--accentBlue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        nav .cta-nav:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 32px 80px;
+            overflow: hidden;
+        }
+
+        /* Background gradients */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(122, 108, 255, 0.3) 0%, rgba(255, 107, 193, 0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            left: -5%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(91, 140, 255, 0.25) 0%, rgba(79, 209, 197, 0.2) 50%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        /* Glowing wave line */
+        .hero-wave {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                var(--success) 20%,
+                var(--accentBlue) 50%,
+                var(--success) 80%,
+                transparent 100%);
+            opacity: 0.4;
+            filter: blur(1px);
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1120px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 5vw, 64px);
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--text);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtext {
+            font-size: 20px;
+            color: var(--muted);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero .trust-bullets {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .hero .trust-bullets span {
+            margin: 0 12px;
+        }
+
+        .hero .one-liner {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 40px;
+        }
+
+        .hero button {
+            background: var(--accentBlue);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-family: inherit;
+        }
+
+        .hero button:hover {
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 120px 32px;
+            position: relative;
+        }
+
+        section h2 {
+            font-size: clamp(36px, 4vw, 42px);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text);
+            margin-bottom: 32px;
+            letter-spacing: -0.01em;
+        }
+
+        section p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        section strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        li {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--muted);
+            padding: 8px 0 8px 32px;
+            position: relative;
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accentBlue);
+            font-weight: 400;
+        }
+
+        /* Glass divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%,
+                var(--border) 20%,
+                var(--border) 80%,
+                transparent 100%);
+            margin: 80px 0;
+        }
+
+        /* Reporting Section */
+        .reporting-section {
+            background: rgba(15, 20, 36, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 64px 48px;
+            backdrop-filter: blur(10px);
+            margin: 40px auto;
+        }
+
+        .reporting-section h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .reporting-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .reporting-tab {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .reporting-tab-label {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .reporting-progress {
+            width: 100%;
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .reporting-progress-fill {
+            height: 100%;
+            border-radius: 2px;
+        }
+
+        .reporting-progress-fill.placements {
+            background: var(--success);
+            width: 85%;
+        }
+
+        .reporting-progress-fill.visibility {
+            background: var(--accentBlue);
+            width: 72%;
+        }
+
+        .reporting-progress-fill.citations {
+            background: var(--accentViolet);
+            width: 68%;
+        }
+
+        .reporting-progress-fill.growth {
+            background: var(--success);
+            width: 91%;
+        }
+
+        .reporting-caption {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        /* Who This Is For */
+        .clients-line {
+            font-size: 16px;
+            color: var(--muted);
+            margin-top: 24px;
+        }
+
+        .clients-line strong {
+            color: var(--text);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .pricing-card {
+            background: rgba(15, 20, 36, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .pricing-card.core {
+            border-color: var(--accentViolet);
+            border-width: 2px;
+            box-shadow: 0 0 30px rgba(122, 108, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .pricing-card.core::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 32px;
+            background: var(--accentViolet);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .pricing-card.core h3 {
+            margin-top: 8px;
+        }
+
+        .pricing-card .price {
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 16px 0 24px;
+        }
+
+        .pricing-card ul {
+            margin: 24px 0;
+        }
+
+        .pricing-card li {
+            font-size: 16px;
+            padding: 6px 0 6px 28px;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            color: var(--success);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            text-align: center;
+            padding: 100px 32px;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 24px;
+        }
+
+        .final-cta button {
+            background: var(--accentBlue);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            font-family: inherit;
+            margin-top: 32px;
+        }
+
+        .final-cta button:hover {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reporting-tabs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-card.core {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav .nav-links {
+                gap: 16px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 90vh;
+                padding: 100px 20px 60px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .reporting-tabs {
+                grid-template-columns: 1fr;
+            }
+
+            .reporting-section {
+                padding: 48px 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">Yassify</div>
+        <div class="nav-links">
+            <a href="#pricing">Pricing</a>
+            <a href="#request" class="cta-nav">Request plan</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-wave"></div>
+    <div class="hero-container">
+        <h1>PR for Web3 & FinTech that compounds trust — not noise.</h1>
+        <p class="subtext">We help Web3 and FinTech founders become credible market voices trusted by:</p>
+        <p class="trust-bullets">
+            <span>investors</span> · 
+            <span>Google</span> · 
+            <span>AI search engines</span> · 
+            <span>institutional partners</span>
+        </p>
+        <p class="one-liner">Yassify is PR at the intersection of Web3 × FinTech × IT.</p>
+        <button>Request a custom media plan</button>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Why Traditional PR Fails -->
+<section>
+    <h2>Why Traditional PR Fails in Web3 & FinTech</h2>
+    <p>Most PR agencies:</p>
+    <ul>
+        <li>write for journalists, not for the market</li>
+        <li>don't understand FinTech regulation</li>
+        <li>ignore SEO and AI visibility</li>
+    </ul>
+    <p><strong>The result:</strong> logos without trust, no cumulative effect, zero impact on deals, investors, or credibility.</p>
+    <p><strong>Web3 doesn't need hype. It needs structured, compounding trust.</strong></p>
+</section>
+
+<div class="divider"></div>
+
+<!-- The Yassify Philosophy -->
+<section>
+    <h2>The Yassify Philosophy</h2>
+    <p><strong>We don't buy attention. We compound credibility.</strong></p>
+    <p>PR is not a publication. PR is a reputation asset that:</p>
+    <ul>
+        <li>accumulates in search results</li>
+        <li>strengthens the founder's personal brand</li>
+        <li>keeps working 12–24 months after publication</li>
+    </ul>
+    <p>We build long-term market positioning, not short-term spikes.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Transparent White-Label Reporting -->
+<section class="reporting-section">
+    <h2>Transparent White-Label Reporting</h2>
+    <h3>See your credibility grow.</h3>
+    <p>We provide transparent, white-label reporting that shows how your credibility evolves over time.</p>
+    
+    <div class="reporting-tabs">
+        <div class="reporting-tab">
+            <div class="reporting-tab-label">Media Placements</div>
+            <div class="reporting-progress">
+                <div class="reporting-progress-fill placements"></div>
+            </div>
+        </div>
+        <div class="reporting-tab">
+            <div class="reporting-tab-label">Search Visibility</div>
+            <div class="reporting-progress">
+                <div class="reporting-progress-fill visibility"></div>
+            </div>
+        </div>
+        <div class="reporting-tab">
+            <div class="reporting-tab-label">AI Citations</div>
+            <div class="reporting-progress">
+                <div class="reporting-progress-fill citations"></div>
+            </div>
+        </div>
+        <div class="reporting-tab">
+            <div class="reporting-tab-label">Credibility Growth</div>
+            <div class="reporting-progress">
+                <div class="reporting-progress-fill growth"></div>
+            </div>
+        </div>
+    </div>
+    
+    <p class="reporting-caption">Investor-ready reports, fully white-labeled.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Who This Is For -->
+<section>
+    <h2>Who This Is For</h2>
+    <ul>
+        <li>Web3 / FinTech / infrastructure startups</li>
+        <li>B2B or institutional focus</li>
+        <li>long trust & sales cycles</li>
+        <li>founders who value credibility</li>
+    </ul>
+    <p class="clients-line"><strong>Clients:</strong> Maclear · 8lends</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Pricing -->
+<section id="pricing">
+    <h2>Pricing</h2>
+    <p><strong>Designed so $3,000 feels optimal — not expensive</strong></p>
+    
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <h3>START</h3>
+            <div class="price">$1,500<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
+            <ul>
+                <li>1 strategic call (60 min)</li>
+                <li>1 article (copywriting + placement)</li>
+                <li>basic analytics</li>
+            </ul>
+        </div>
+        
+        <div class="pricing-card core">
+            <h3>CORE</h3>
+            <div class="price">$3,000<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
+            <ul>
+                <li>2 hours of strategic consulting</li>
+                <li>3 full-cycle publications</li>
+                <li>transparent white-label reporting</li>
+            </ul>
+        </div>
+        
+        <div class="pricing-card">
+            <h3>AUTHORITY</h3>
+            <div class="price">$5,500<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
+            <ul>
+                <li>4 hours of consulting</li>
+                <li>6 publications per month</li>
+                <li>advanced credibility analytics</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Final CTA -->
+<section class="final-cta" id="request">
+    <h2>If your product is real, your PR should be measurable.</h2>
+    <p>We work with a limited number of clients,<br>because credibility doesn't scale without losing quality.</p>
+    <button>Request a custom media plan & credibility assessment</button>
+</section>
+
+<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
