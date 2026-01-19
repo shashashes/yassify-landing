@@ -211,35 +211,85 @@
         }
 
         .hero h1 {
-            font-size: clamp(48px, 5vw, 64px);
+            font-size: clamp(42px, 5vw, 56px);
             font-weight: 600;
             line-height: 1.1;
             color: var(--text);
-            margin-bottom: 24px;
+            margin-bottom: 48px;
             letter-spacing: -0.02em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero .subtext {
-            font-size: 20px;
+        /* Infographic */
+        .hero-infographic {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin: 48px 0;
+            flex-wrap: wrap;
+        }
+
+        .infographic-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .infographic-label {
+            font-size: 14px;
             color: var(--muted);
-            margin-bottom: 32px;
-            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
         }
 
-        .hero .trust-bullets {
-            font-size: 18px;
+        .infographic-badge {
+            background: rgba(15, 20, 36, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .infographic-arrow {
+            font-size: 24px;
+            color: var(--accentBlue);
+            font-weight: 300;
+        }
+
+        .infographic-output {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .infographic-output-item {
+            background: rgba(79, 209, 197, 0.1);
+            border: 1px solid rgba(79, 209, 197, 0.2);
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .hero-cta-wrapper {
+            margin-top: 48px;
+        }
+
+        .hero-cta-micro {
+            font-size: 14px;
             color: var(--muted);
-            margin-bottom: 32px;
-        }
-
-        .hero .trust-bullets span {
-            margin: 0 12px;
-        }
-
-        .hero .one-liner {
-            font-size: 18px;
-            color: var(--muted);
-            margin-bottom: 40px;
+            margin-top: 12px;
         }
 
         .hero button {
@@ -700,17 +750,40 @@
 <section class="hero">
     <div class="hero-wave"></div>
     <div class="hero-container">
-        <h1>PR for Web3 & FinTech founders who need investor trust, not press release volume.</h1>
-        <p class="subtext">Most PR agencies sell you logos. We build measurable credibility that compounds over time.</p>
-        <p class="trust-bullets">
-            <span>investors</span> · 
-            <span>Google</span> · 
-            <span>AI search engines (ChatGPT, Perplexity, Gemini)</span> · 
-            <span>institutional partners</span>
-        </p>
-        <p class="one-liner">Yassify operates at the intersection of Web3 × FinTech × IT — where most agencies lack the context to build real authority.</p>
-        <button>Get a custom media plan</button>
-        <p style="font-size: 14px; color: var(--muted); margin-top: 16px;">See exactly how we'd position your company. Takes 2 minutes.</p>
+        <h1>PR that compounds credibility for Web3 & FinTech founders.</h1>
+        
+        <div class="hero-infographic">
+            <div class="infographic-section">
+                <div class="infographic-label">Input</div>
+                <div class="infographic-badge">Web3</div>
+                <div class="infographic-badge">FinTech</div>
+                <div class="infographic-badge">IT</div>
+            </div>
+            
+            <div class="infographic-arrow">→</div>
+            
+            <div class="infographic-section">
+                <div class="infographic-label">Process</div>
+                <div class="infographic-badge" style="background: rgba(122, 108, 255, 0.15); border-color: rgba(122, 108, 255, 0.3); color: var(--accentViolet);">Credibility Layer</div>
+            </div>
+            
+            <div class="infographic-arrow">→</div>
+            
+            <div class="infographic-section">
+                <div class="infographic-label">Output</div>
+                <div class="infographic-output">
+                    <div class="infographic-output-item">Investors</div>
+                    <div class="infographic-output-item">Search</div>
+                    <div class="infographic-output-item">AI</div>
+                    <div class="infographic-output-item">Institutions</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-cta-wrapper">
+            <button>Get a custom media plan</button>
+            <p class="hero-cta-micro">No sales call. Takes 2 minutes.</p>
+        </div>
     </div>
 </section>
 
@@ -719,6 +792,8 @@
 <!-- Why Traditional PR Fails -->
 <section>
     <h2>Why Traditional PR Fails in Web3 & FinTech</h2>
+    <p><strong>Most PR agencies sell you logos. We build measurable credibility that compounds over time.</strong></p>
+    <p>Yassify operates at the intersection of Web3 × FinTech × IT — where most agencies lack the context to build real authority.</p>
     <p>Traditional PR agencies optimize for the wrong outcome.</p>
     <ul>
         <li>write press releases for journalists, not narratives for your market</li>
