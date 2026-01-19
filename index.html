@@ -122,31 +122,53 @@
             overflow: hidden;
         }
 
-        /* Background gradients */
+        /* Background gradients - Reference Style */
         .hero::before {
             content: '';
             position: absolute;
-            top: -20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(122, 108, 255, 0.3) 0%, rgba(255, 107, 193, 0.2) 50%, transparent 70%);
+            top: -10%;
+            right: -5%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(ellipse at top right, 
+                rgba(255, 107, 193, 0.4) 0%, 
+                rgba(255, 107, 193, 0.25) 20%,
+                rgba(122, 108, 255, 0.3) 40%,
+                rgba(122, 108, 255, 0.15) 60%,
+                transparent 80%);
             border-radius: 50%;
-            filter: blur(60px);
+            filter: blur(100px);
             z-index: 0;
+            animation: float 20s ease-in-out infinite;
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -15%;
-            left: -5%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(91, 140, 255, 0.25) 0%, rgba(79, 209, 197, 0.2) 50%, transparent 70%);
+            bottom: -20%;
+            left: -10%;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(ellipse at bottom left, 
+                rgba(79, 209, 197, 0.35) 0%,
+                rgba(79, 209, 197, 0.25) 15%,
+                rgba(91, 140, 255, 0.3) 30%,
+                rgba(91, 140, 255, 0.2) 50%,
+                rgba(30, 36, 51, 0.3) 70%,
+                transparent 85%);
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(120px);
             z-index: 0;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(30px, -30px) scale(1.05);
+            }
         }
 
         /* Glowing wave line */
@@ -158,12 +180,14 @@
             height: 2px;
             background: linear-gradient(90deg, 
                 transparent 0%,
-                var(--success) 20%,
-                var(--accentBlue) 50%,
-                var(--success) 80%,
+                rgba(79, 209, 197, 0.6) 15%,
+                rgba(91, 140, 255, 0.7) 35%,
+                rgba(79, 209, 197, 0.8) 50%,
+                rgba(91, 140, 255, 0.7) 65%,
+                rgba(79, 209, 197, 0.6) 85%,
                 transparent 100%);
-            opacity: 0.4;
-            filter: blur(1px);
+            opacity: 0.5;
+            filter: blur(2px);
             z-index: 1;
         }
 
