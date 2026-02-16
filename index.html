@@ -14,17 +14,20 @@
         }
 
         :root {
-            --bg: #0B0F1A;
-            --text: #EAEAF0;
-            --muted: #A6ADBB;
-            --border: #1E2433;
-            --accentBlue: #5B8CFF;
-            --accentViolet: #7A6CFF;
-            --success: #4FD1C5;
+            --bg: #070A12;
+            --text: #EEF0FF;
+            --text-secondary: rgba(238, 240, 255, 0.70);
+            --text-muted: rgba(238, 240, 255, 0.55);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.10);
+            --divider: rgba(255, 255, 255, 0.08);
+            --accentBlue: #4D7CFF;
+            --accentViolet: #7B5CFF;
+            --accentTeal: #7FE7FF;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -33,7 +36,7 @@
             overflow-x: hidden;
         }
 
-        /* Star dust texture */
+        /* Background noise */
         body::before {
             content: '';
             position: fixed;
@@ -42,19 +45,19 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.15), transparent),
-                radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.1), transparent),
-                radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.15), transparent),
-                radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.1), transparent);
+                radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.08), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(255,255,255,0.06), transparent),
+                radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.1), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.08), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.06), transparent);
             background-size: 200% 200%;
             background-position: 0% 0%, 100% 0%, 50% 50%, 0% 100%, 100% 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.4;
+            opacity: 0.6;
         }
 
-        /* Top Navigation - Skeuomorphic Glass */
+        /* Top Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -62,12 +65,9 @@
             right: 0;
             z-index: 1000;
             padding: 24px 32px;
-            background: rgba(11, 15, 26, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: rgba(7, 10, 18, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--divider);
         }
 
         nav .nav-container {
@@ -102,23 +102,18 @@
         }
 
         nav .cta-nav {
-            background: linear-gradient(135deg, var(--accentBlue) 0%, #4A7CFF 100%);
+            background: linear-gradient(90deg, var(--accentBlue), var(--accentViolet));
             color: white;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 500;
-            box-shadow: 0 4px 15px rgba(91, 140, 255, 0.4),
-                        0 2px 5px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(77, 124, 255, 0.18);
+            border: none;
+            transition: filter 0.2s ease;
         }
 
         nav .cta-nav:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(91, 140, 255, 0.5),
-                        0 3px 8px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            filter: brightness(1.08);
             color: white;
         }
 
@@ -142,15 +137,12 @@
             width: 800px;
             height: 800px;
             background: radial-gradient(ellipse at top right, 
-                rgba(255, 107, 193, 0.4) 0%, 
-                rgba(255, 107, 193, 0.25) 20%,
-                rgba(122, 108, 255, 0.3) 40%,
-                rgba(122, 108, 255, 0.15) 60%,
+                rgba(123, 92, 255, 0.4) 0%, 
+                rgba(255, 107, 193, 0.3) 50%,
                 transparent 80%);
             border-radius: 50%;
             filter: blur(100px);
             z-index: 0;
-            animation: float 20s ease-in-out infinite;
         }
 
         .hero::after {
@@ -161,49 +153,34 @@
             width: 900px;
             height: 900px;
             background: radial-gradient(ellipse at bottom left, 
-                rgba(79, 209, 197, 0.35) 0%,
-                rgba(79, 209, 197, 0.25) 15%,
-                rgba(91, 140, 255, 0.3) 30%,
-                rgba(91, 140, 255, 0.2) 50%,
-                rgba(30, 36, 51, 0.3) 70%,
+                rgba(30, 50, 100, 0.4) 0%,
+                rgba(123, 92, 255, 0.3) 30%,
+                rgba(127, 231, 255, 0.25) 60%,
                 transparent 85%);
             border-radius: 50%;
             filter: blur(120px);
             z-index: 0;
-            animation: float 25s ease-in-out infinite reverse;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(30px, -30px) scale(1.05);
-            }
-        }
-
-        /* Glowing wave line */
+        /* Glowing wave line - horizon */
         .hero-wave {
             position: absolute;
             top: 50%;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 1px;
             background: linear-gradient(90deg, 
                 transparent 0%,
-                rgba(79, 209, 197, 0.6) 15%,
-                rgba(91, 140, 255, 0.7) 35%,
-                rgba(79, 209, 197, 0.8) 50%,
-                rgba(91, 140, 255, 0.7) 65%,
-                rgba(79, 209, 197, 0.6) 85%,
+                rgba(127, 231, 255, 0.4) 20%,
+                rgba(127, 231, 255, 0.6) 50%,
+                rgba(127, 231, 255, 0.4) 80%,
                 transparent 100%);
-            opacity: 0.5;
-            filter: blur(2px);
+            filter: blur(1px);
             z-index: 1;
         }
 
         .hero-container {
-            max-width: 1120px;
+            max-width: 960px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -211,133 +188,58 @@
         }
 
         .hero h1 {
-            font-size: clamp(42px, 5vw, 56px);
-            font-weight: 600;
+            font-size: clamp(44px, 5vw, 52px);
+            font-weight: 700;
             line-height: 1.1;
             color: var(--text);
-            margin-bottom: 48px;
+            margin-bottom: 24px;
             letter-spacing: -0.02em;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        /* Infographic */
-        .hero-infographic {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            margin: 48px 0;
-            flex-wrap: wrap;
+        .hero .subtext {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
         }
 
-        .infographic-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
+        .hero .trust-bullets {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
         }
 
-        .infographic-label {
-            font-size: 14px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 500;
+        .hero .trust-bullets span {
+            margin: 0 8px;
         }
 
-        .infographic-badge {
-            background: rgba(15, 20, 36, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--text);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .infographic-arrow {
-            font-size: 24px;
-            color: var(--accentBlue);
-            font-weight: 300;
-        }
-
-        .infographic-output {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .infographic-output-item {
-            background: rgba(79, 209, 197, 0.1);
-            border: 1px solid rgba(79, 209, 197, 0.2);
-            border-radius: 6px;
-            padding: 8px 16px;
-            font-size: 14px;
-            color: var(--success);
-            font-weight: 500;
+        .hero .one-liner {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
         }
 
         .hero-cta-wrapper {
-            margin-top: 48px;
-        }
-
-        .hero-cta-micro {
-            font-size: 14px;
-            color: var(--muted);
-            margin-top: 12px;
+            margin-top: 40px;
         }
 
         .hero button {
-            background: linear-gradient(135deg, var(--accentBlue) 0%, #4A7CFF 100%);
+            background: linear-gradient(90deg, var(--accentBlue), var(--accentViolet));
             color: white;
             border: none;
-            padding: 16px 32px;
-            font-size: 18px;
+            padding: 12px 32px;
+            height: 44px;
+            font-size: 16px;
             font-weight: 500;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: filter 0.2s ease;
             font-family: inherit;
-            box-shadow: 0 8px 25px rgba(91, 140, 255, 0.4),
-                        0 4px 10px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-                        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .hero button:hover::before {
-            left: 100%;
+            box-shadow: 0 10px 30px rgba(77, 124, 255, 0.18);
         }
 
         .hero button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(91, 140, 255, 0.5),
-                        0 6px 15px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        }
-
-        .hero button:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 15px rgba(91, 140, 255, 0.3),
-                        inset 0 2px 5px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.08);
         }
 
         /* Sections */
@@ -380,92 +282,53 @@
         }
 
         li {
-            font-size: 18px;
-            line-height: 1.7;
-            color: var(--muted);
-            padding: 8px 0 8px 32px;
+            font-size: clamp(16px, 1.5vw, 18px);
+            line-height: 1.6;
+            color: var(--text-secondary);
+            padding: 8px 0 8px 28px;
             position: relative;
         }
 
         li::before {
-            content: '→';
+            content: '•';
             position: absolute;
             left: 0;
-            color: var(--accentBlue);
+            color: var(--text-muted);
             font-weight: 400;
+            font-size: 20px;
         }
 
-        /* Glass divider - Premium */
+        /* Divider */
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 255, 255, 0.05) 20%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0.05) 80%,
-                transparent 100%);
-            margin: 80px 0;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
+            background: var(--divider);
+            margin: 48px 0;
         }
 
-        .divider::after {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(0, 0, 0, 0.3),
-                transparent);
-        }
-
-        /* Reporting Section - Premium Glass */
+        /* Reporting Section */
         .reporting-section {
-            background: linear-gradient(135deg, 
-                rgba(15, 20, 36, 0.7) 0%, 
-                rgba(20, 26, 45, 0.6) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 64px 48px;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 48px 32px;
             margin: 40px auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-                        0 8px 25px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-
-        .reporting-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent);
         }
 
         .reporting-section h3 {
-            font-size: 24px;
+            font-size: clamp(20px, 2vw, 24px);
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 16px;
+            margin-bottom: 32px;
         }
 
         .reporting-tabs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin: 40px 0;
+            gap: 16px;
+            margin: 32px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 16px;
         }
 
         .reporting-tab {
@@ -474,68 +337,71 @@
         }
 
         .reporting-tab-label {
-            font-size: 12px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: none;
+            letter-spacing: 0;
             margin-bottom: 12px;
             font-weight: 500;
         }
 
+        .reporting-tab.active .reporting-tab-label {
+            color: var(--text);
+        }
+
         .reporting-progress {
             width: 100%;
-            height: 4px;
-            background: rgba(30, 36, 51, 0.8);
-            border-radius: 4px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1px;
             overflow: hidden;
-            margin-bottom: 8px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3),
-                        0 1px 0 rgba(255, 255, 255, 0.05);
-            position: relative;
+            margin-bottom: 0;
         }
 
         .reporting-progress-fill {
             height: 100%;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(79, 209, 197, 0.5),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
-
-        .reporting-progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-            border-radius: 4px 4px 0 0;
+            border-radius: 1px;
         }
 
         .reporting-progress-fill.placements {
-            background: var(--success);
+            background: var(--accentBlue);
+            width: 75%;
+        }
+
+        .reporting-tab.active .reporting-progress-fill.placements {
             width: 85%;
         }
 
         .reporting-progress-fill.visibility {
-            background: var(--accentBlue);
-            width: 72%;
+            background: var(--accentTeal);
+            width: 65%;
+        }
+
+        .reporting-tab.active .reporting-progress-fill.visibility {
+            width: 78%;
         }
 
         .reporting-progress-fill.citations {
-            background: var(--accentViolet);
-            width: 68%;
+            background: var(--accentBlue);
+            width: 60%;
+        }
+
+        .reporting-tab.active .reporting-progress-fill.citations {
+            width: 72%;
         }
 
         .reporting-progress-fill.growth {
-            background: var(--success);
-            width: 91%;
+            background: linear-gradient(90deg, var(--accentTeal), var(--accentViolet));
+            width: 70%;
+        }
+
+        .reporting-tab.active .reporting-progress-fill.growth {
+            width: 88%;
         }
 
         .reporting-caption {
             font-size: 14px;
-            color: var(--muted);
+            color: var(--text-muted);
             margin-top: 24px;
             text-align: center;
         }
@@ -543,7 +409,7 @@
         /* Who This Is For */
         .clients-line {
             font-size: 16px;
-            color: var(--muted);
+            color: var(--text-secondary);
             margin-top: 24px;
         }
 
@@ -555,78 +421,50 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 48px;
+            gap: 20px;
+            margin-top: 32px;
         }
 
         .pricing-card {
-            background: linear-gradient(135deg, 
-                rgba(15, 20, 36, 0.75) 0%, 
-                rgba(20, 26, 45, 0.65) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            padding: 24px;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
-                        0 4px 15px rgba(0, 0, 0, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5),
-                        0 6px 20px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .pricing-card.core {
-            border: 2px solid var(--accentViolet);
-            background: linear-gradient(135deg, 
-                rgba(15, 20, 36, 0.85) 0%, 
-                rgba(25, 20, 45, 0.75) 100%);
-            box-shadow: 0 20px 60px rgba(122, 108, 255, 0.3),
-                        0 10px 30px rgba(122, 108, 255, 0.2),
-                        0 0 0 1px rgba(122, 108, 255, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(123, 92, 255, 0.55);
             transform: scale(1.03);
-        }
-
-        .pricing-card.core:hover {
-            transform: scale(1.05) translateY(-4px);
-            box-shadow: 0 25px 70px rgba(122, 108, 255, 0.4),
-                        0 12px 35px rgba(122, 108, 255, 0.3),
-                        0 0 0 1px rgba(122, 108, 255, 0.15);
         }
 
         .pricing-card.core::before {
             content: 'Most Popular';
             position: absolute;
-            top: -12px;
-            left: 32px;
-            background: linear-gradient(135deg, var(--accentViolet) 0%, #8B6CFF 100%);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 12px;
+            top: -10px;
+            left: 24px;
+            background: rgba(123, 92, 255, 0.18);
+            border: 1px solid rgba(123, 92, 255, 0.40);
+            color: #CFC6FF;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.02em;
-            box-shadow: 0 4px 15px rgba(122, 108, 255, 0.5),
-                        0 2px 5px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.2);
             text-transform: uppercase;
         }
 
         .pricing-card h3 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 12px;
+            margin-bottom: 4px;
+        }
+
+        .pricing-card .subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
         }
 
         .pricing-card.core h3 {
@@ -634,10 +472,10 @@
         }
 
         .pricing-card .price {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 600;
             color: var(--text);
-            margin: 16px 0 24px;
+            margin: 16px 0 20px;
         }
 
         .pricing-card ul {
@@ -645,13 +483,15 @@
         }
 
         .pricing-card li {
-            font-size: 16px;
-            padding: 6px 0 6px 28px;
+            font-size: 15px;
+            padding: 6px 0 6px 24px;
+            color: var(--text-secondary);
         }
 
         .pricing-card li::before {
             content: '✓';
-            color: var(--success);
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
         /* Final CTA */
@@ -665,29 +505,23 @@
         }
 
         .final-cta button {
-            background: linear-gradient(135deg, var(--accentBlue) 0%, #4A7CFF 100%);
+            background: linear-gradient(90deg, var(--accentBlue), var(--accentViolet));
             color: white;
             border: none;
-            padding: 16px 32px;
-            font-size: 18px;
+            padding: 12px 32px;
+            height: 44px;
+            font-size: 16px;
             font-weight: 500;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: filter 0.2s ease;
             font-family: inherit;
             margin-top: 32px;
-            box-shadow: 0 8px 25px rgba(91, 140, 255, 0.4),
-                        0 4px 10px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-                        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(77, 124, 255, 0.18);
         }
 
         .final-cta button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(91, 140, 255, 0.5),
-                        0 6px 15px rgba(0, 0, 0, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            filter: brightness(1.08);
         }
 
         /* Responsive */
@@ -750,39 +584,17 @@
 <section class="hero">
     <div class="hero-wave"></div>
     <div class="hero-container">
-        <h1>PR that compounds credibility for Web3 & FinTech founders.</h1>
-        
-        <div class="hero-infographic">
-            <div class="infographic-section">
-                <div class="infographic-label">Input</div>
-                <div class="infographic-badge">Web3</div>
-                <div class="infographic-badge">FinTech</div>
-                <div class="infographic-badge">IT</div>
-            </div>
-            
-            <div class="infographic-arrow">→</div>
-            
-            <div class="infographic-section">
-                <div class="infographic-label">Process</div>
-                <div class="infographic-badge" style="background: rgba(122, 108, 255, 0.15); border-color: rgba(122, 108, 255, 0.3); color: var(--accentViolet);">Credibility Layer</div>
-            </div>
-            
-            <div class="infographic-arrow">→</div>
-            
-            <div class="infographic-section">
-                <div class="infographic-label">Output</div>
-                <div class="infographic-output">
-                    <div class="infographic-output-item">Investors</div>
-                    <div class="infographic-output-item">Search</div>
-                    <div class="infographic-output-item">AI</div>
-                    <div class="infographic-output-item">Institutions</div>
-                </div>
-            </div>
-        </div>
-        
+        <h1>PR for Web3 & FinTech that compounds trust — not noise.</h1>
+        <p class="subtext">We help Web3 and FinTech founders become credible market voices trusted by:</p>
+        <p class="trust-bullets">
+            <span>Investors</span> · 
+            <span>Google</span> · 
+            <span>AI search engines</span> · 
+            <span>Institutional partners</span>
+        </p>
+        <p class="one-liner">Yassify is PR at the intersection of Web3 × FinTech × IT.</p>
         <div class="hero-cta-wrapper">
-            <button>Get a custom media plan</button>
-            <p class="hero-cta-micro">No sales call. Takes 2 minutes.</p>
+            <button>Request a custom media plan</button>
         </div>
     </div>
 </section>
@@ -792,17 +604,12 @@
 <!-- Why Traditional PR Fails -->
 <section>
     <h2>Why Traditional PR Fails in Web3 & FinTech</h2>
-    <p><strong>Most PR agencies sell you logos. We build measurable credibility that compounds over time.</strong></p>
-    <p>Yassify operates at the intersection of Web3 × FinTech × IT — where most agencies lack the context to build real authority.</p>
-    <p>Traditional PR agencies optimize for the wrong outcome.</p>
     <ul>
-        <li>write press releases for journalists, not narratives for your market</li>
-        <li>don't understand FinTech compliance or Web3 infrastructure</li>
-        <li>ignore how search engines and AI systems actually find your content</li>
-        <li>measure success by placement count, not credibility growth</li>
+        <li>Write for journalists, not the market</li>
+        <li>Ignore SEO and AI visibility</li>
+        <li>Sell "placements", not reputation</li>
     </ul>
-    <p><strong>The Cost:</strong> You spend $5,000–$15,000/month and get: logos in media directories, zero cumulative effect, no measurable impact on investor conversations or deal flow.</p>
-    <p><strong>Web3 and FinTech don't need more press releases. They need structured, compounding trust that works when you're not actively pitching.</strong></p>
+    <p><strong>The result:</strong> Logos without trust · No cumulative effect · Zero impact on deals, investors, or credibility</p>
 </section>
 
 <div class="divider"></div>
@@ -811,14 +618,12 @@
 <section>
     <h2>The Yassify Philosophy</h2>
     <p><strong>We don't buy attention. We compound credibility.</strong></p>
-    <p>Think of PR as a balance sheet asset, not a marketing expense.</p>
     <ul>
-        <li>accumulates in search results (your name + "Web3" or "FinTech" shows credible results)</li>
-        <li>strengthens your personal brand (founders become the category voice)</li>
-        <li>simplifies investor conversations (they've already seen your thinking)</li>
-        <li>keeps working 12–24 months after publication (content ranks, gets cited, builds authority)</li>
+        <li>Accumulates in search results</li>
+        <li>Strengthens the founder's personal brand</li>
+        <li>Simplifies investor conversations</li>
+        <li>Keeps working 12–24 months after publication</li>
     </ul>
-    <p><strong>Traditional PR is activity. Our approach is an asset that appreciates over time.</strong></p>
 </section>
 
 <div class="divider"></div>
@@ -826,8 +631,7 @@
 <!-- Transparent White-Label Reporting -->
 <section class="reporting-section">
     <h2>Transparent White-Label Reporting</h2>
-    <h3>You don't hope PR works. You see credibility grow.</h3>
-    <p>Every month, you receive a white-label report that shows:</p>
+    <h3>See your credibility grow.</h3>
     
     <div class="reporting-tabs">
         <div class="reporting-tab">
@@ -836,7 +640,7 @@
                 <div class="reporting-progress-fill placements"></div>
             </div>
         </div>
-        <div class="reporting-tab">
+        <div class="reporting-tab active">
             <div class="reporting-tab-label">Search Visibility</div>
             <div class="reporting-progress">
                 <div class="reporting-progress-fill visibility"></div>
@@ -856,9 +660,7 @@
         </div>
     </div>
     
-    <p style="margin-top: 32px; font-size: 16px; line-height: 1.7;">Most agencies send you PDFs with screenshots. We give you investor-ready reports that show: how your search visibility changes month-over-month, which AI systems cite your content (ChatGPT, Perplexity, Gemini), narrative consistency across publications, and measurable credibility growth you can share with your board.</p>
-    <p style="margin-top: 24px; font-size: 16px; line-height: 1.7;"><strong>Why white-label matters:</strong> These reports are yours. No agency branding. Share them directly with investors during due diligence, board members in quarterly reviews, or partners evaluating your market position.</p>
-    <p class="reporting-caption" style="margin-top: 32px;"><strong>This isn't an agency report. It's your reputation dashboard.</strong></p>
+    <p class="reporting-caption">Investor-ready reports, fully white-labeled.</p>
 </section>
 
 <div class="divider"></div>
@@ -866,38 +668,33 @@
 <!-- Who This Is For -->
 <section>
     <h2>Who This Is For</h2>
-    <p><strong>Built for founders who think long-term.</strong></p>
     <ul>
-        <li>Web3 / FinTech / infrastructure startups</li>
-        <li>B2B or institutional focus (not consumer apps)</li>
-        <li>long trust and sales cycles (6–18 months)</li>
-        <li>founders who value credibility over quick wins</li>
+        <li>Web3 & FinTech Startups</li>
+        <li>B2B & Institutional</li>
     </ul>
-    <p class="clients-line"><strong>Current clients:</strong> Maclear · 8lends</p>
+    <p class="clients-line"><strong>Clients:</strong> Maclear · 8lends</p>
 </section>
 
 <div class="divider"></div>
 
 <!-- Pricing -->
 <section id="pricing">
-    <h2>Pricing</h2>
-    <p><strong>Pricing designed so $3,000 feels like the obvious choice.</strong></p>
-    <p style="margin-bottom: 32px;">Three plans. One clear winner.</p>
-    
     <div class="pricing-grid">
         <div class="pricing-card">
-            <h3>START — Visibility Test</h3>
-            <div class="price">$1,500<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
+            <h3>Start</h3>
+            <div class="subtitle">Visibility Test</div>
+            <div class="price">$1,500<span style="font-size: 16px; color: var(--text-muted);">/month</span></div>
             <ul>
-                <li>3 Articles Per Month</li>
+                <li>1 Articles Per Month</li>
                 <li>Strategic Consulting</li>
                 <li>White-Label Reports</li>
             </ul>
         </div>
         
         <div class="pricing-card core">
-            <h3>CORE — Reputation Builder</h3>
-            <div class="price">$3,000<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
+            <h3>Core</h3>
+            <div class="subtitle">Reputation Builder</div>
+            <div class="price">$3,000<span style="font-size: 16px; color: var(--text-muted);">/month</span></div>
             <ul>
                 <li>3 Articles Per Month</li>
                 <li>Strategic Consulting</li>
@@ -906,13 +703,9 @@
         </div>
         
         <div class="pricing-card">
-            <h3>AUTHORITY — Market Authority</h3>
-            <div class="price">$5,500<span style="font-size: 18px; color: var(--muted);"> / month</span></div>
-            <ul>
-                <li>3 Articles Per Month</li>
-                <li>Strategic Consulting</li>
-                <li>White-Label Reports</li>
-            </ul>
+            <h3>Authority</h3>
+            <div class="subtitle">Market Authority</div>
+            <div class="price">$5,500<span style="font-size: 16px; color: var(--text-muted);">/month</span></div>
         </div>
     </div>
 </section>
@@ -941,10 +734,7 @@
 
 <!-- Final CTA -->
 <section class="final-cta" id="request">
-    <h2>If your product is real, your PR should be measurable.</h2>
-    <p>We work with a limited number of clients because credibility doesn't scale without losing quality.</p>
-    <button>Get your custom media plan</button>
-    <p style="font-size: 14px; color: var(--muted); margin-top: 16px;">No sales call. No pressure. Just a clear plan showing how we'd position your company.</p>
+    <button>Request a custom media plan</button>
 </section>
 
 <script>
