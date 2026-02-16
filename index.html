@@ -149,102 +149,146 @@
             overflow: hidden;
         }
 
-        /* Hero creative image (product-like credibility dashboard) */
-        .hero-visual {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .hero-visual-panel {
-            position: absolute;
-            top: 56%;
-            left: 50%;
-            width: min(980px, 96vw);
-            height: min(560px, 64vw);
-            transform: translate(-50%, -50%) perspective(1100px) rotateX(10deg) rotateZ(-6deg);
-            border-radius: 26px;
-            background:
-                linear-gradient(rgba(255,255,255,0.045), rgba(255,255,255,0.028)) padding-box,
-                linear-gradient(90deg,
-                    rgba(77,124,255,0.75),
-                    rgba(123,92,255,0.75),
-                    rgba(127,231,255,0.60)) border-box;
-            border: 1px solid transparent;
+        /* Hero image: Bento Proof Grid */
+        .hero-bento {
+            width: min(960px, 96vw);
+            margin: 52px auto 0;
+            position: relative;
+            border-radius: 22px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow:
-                0 50px 160px rgba(0, 0, 0, 0.65),
-                0 18px 70px rgba(0, 0, 0, 0.38),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.30);
+                0 30px 120px rgba(0, 0, 0, 0.55),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(18px) saturate(140%);
             -webkit-backdrop-filter: blur(18px) saturate(140%);
             overflow: hidden;
         }
 
-        /* Inner glow */
-        .hero-visual-panel::before {
+        .hero-bento::before {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(700px 280px at 18% 24%, rgba(77, 124, 255, 0.18), transparent 60%),
-                radial-gradient(700px 280px at 82% 28%, rgba(123, 92, 255, 0.18), transparent 62%),
-                radial-gradient(640px 260px at 56% 78%, rgba(127, 231, 255, 0.10), transparent 64%);
-            opacity: 0.95;
+                radial-gradient(800px 260px at 14% 26%, rgba(77, 124, 255, 0.16), transparent 60%),
+                radial-gradient(700px 260px at 84% 24%, rgba(123, 92, 255, 0.16), transparent 62%),
+                radial-gradient(640px 240px at 56% 82%, rgba(127, 231, 255, 0.08), transparent 64%);
+            opacity: 0.9;
             mix-blend-mode: screen;
+            pointer-events: none;
         }
 
-        /* Specular sweep */
-        .hero-visual-panel::after {
+        .bento-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 14px;
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 16px 16px 14px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .bento-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .bento-signal {
+            height: 2px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .bento-signal > span {
+            display: block;
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .bento-sparkline {
+            width: 100%;
+            height: 46px;
+            opacity: 0.9;
+        }
+
+        .bento-main {
+            grid-column: span 7;
+            grid-row: span 2;
+            padding: 18px 18px 16px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+        }
+
+        .bento-main::after {
             content: '';
             position: absolute;
             top: -30%;
-            left: -60%;
-            width: 70%;
+            left: -70%;
+            width: 60%;
             height: 160%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
             transform: rotate(12deg);
-            opacity: 0.55;
-            animation: sweep 6.5s ease-in-out infinite;
+            opacity: 0.0;
+            animation: bentoSweep 7.5s ease-in-out infinite;
         }
 
-        @keyframes sweep {
-            0%, 35% { left: -70%; opacity: 0.0; }
+        @keyframes bentoSweep {
+            0%, 40% { left: -80%; opacity: 0.0; }
             55% { opacity: 0.55; }
-            75% { left: 120%; opacity: 0.0; }
-            100% { left: 120%; opacity: 0.0; }
+            75% { left: 130%; opacity: 0.0; }
+            100% { left: 130%; opacity: 0.0; }
         }
 
-        .hero-visual-panel svg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.95;
+        .bento-small {
+            grid-column: span 5;
         }
 
-        .hero-visual-panel .glow {
-            filter: drop-shadow(0 0 18px rgba(127, 231, 255, 0.14));
+        .bento-mid {
+            grid-column: span 5;
         }
 
-        .hero-visual-panel .glow-v {
-            filter: drop-shadow(0 0 18px rgba(123, 92, 255, 0.16));
+        .bento-chip {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(0, 0, 0, 0.18);
+            color: rgba(238, 240, 255, 0.78);
+            font-size: 13px;
+            margin-top: 6px;
         }
 
-        /* Gentle drift (no gimmicks) */
-        @keyframes panelDrift {
-            0%, 100% { transform: translate(-50%, -50%) perspective(1100px) rotateX(10deg) rotateZ(-6deg) translateY(0px); }
-            50% { transform: translate(-50%, -50%) perspective(1100px) rotateX(10deg) rotateZ(-6deg) translateY(-6px); }
-        }
-
-        .hero-visual-panel {
-            animation: panelDrift 14s ease-in-out infinite;
+        .bento-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(127, 231, 255, 0.9);
+            box-shadow: 0 0 14px rgba(127, 231, 255, 0.26);
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .hero-visual-panel { animation: none; }
-            .hero-visual-panel::after { animation: none; display: none; }
+            .bento-main::after { animation: none; display: none; }
         }
 
         /* Background gradients - Reference Style */
@@ -713,10 +757,20 @@
                 padding: 120px 20px 72px;
             }
 
-            .hero-visual-panel {
-                top: 60%;
-                opacity: 0.62;
-                transform: translate(-50%, -50%) perspective(900px) rotateX(12deg) rotateZ(-5deg);
+            .hero-bento {
+                margin-top: 40px;
+                padding: 14px;
+            }
+
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bento-main,
+            .bento-small,
+            .bento-mid {
+                grid-column: auto;
+                grid-row: auto;
             }
 
             section {
@@ -749,117 +803,6 @@
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-wave"></div>
-    <div class="hero-visual" aria-hidden="true">
-        <div class="hero-visual-panel">
-            <svg viewBox="0 0 980 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="strokeIris" x1="0" y1="0" x2="980" y2="560" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="rgba(77,124,255,0.55)"/>
-                        <stop offset="0.52" stop-color="rgba(123,92,255,0.50)"/>
-                        <stop offset="1" stop-color="rgba(127,231,255,0.40)"/>
-                    </linearGradient>
-                    <linearGradient id="lineBlueViolet" x1="90" y1="0" x2="930" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#4D7CFF" stop-opacity="0.85"/>
-                        <stop offset="1" stop-color="#7B5CFF" stop-opacity="0.85"/>
-                    </linearGradient>
-                    <linearGradient id="lineTeal" x1="0" y1="0" x2="980" y2="0" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#7FE7FF" stop-opacity="0.55"/>
-                        <stop offset="1" stop-color="#7FE7FF" stop-opacity="0.10"/>
-                    </linearGradient>
-                    <radialGradient id="ringGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(520 292) rotate(90) scale(180)">
-                        <stop stop-color="rgba(127,231,255,0.22)"/>
-                        <stop offset="0.55" stop-color="rgba(123,92,255,0.12)"/>
-                        <stop offset="1" stop-color="rgba(0,0,0,0)"/>
-                    </radialGradient>
-                    <radialGradient id="dotTeal" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) rotate(90) scale(22)">
-                        <stop stop-color="#7FE7FF" stop-opacity="0.9"/>
-                        <stop offset="1" stop-color="#7FE7FF" stop-opacity="0"/>
-                    </radialGradient>
-                    <radialGradient id="dotViolet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) rotate(90) scale(22)">
-                        <stop stop-color="#7B5CFF" stop-opacity="0.9"/>
-                        <stop offset="1" stop-color="#7B5CFF" stop-opacity="0"/>
-                    </radialGradient>
-                    <radialGradient id="dotBlue" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) rotate(90) scale(22)">
-                        <stop stop-color="#4D7CFF" stop-opacity="0.9"/>
-                        <stop offset="1" stop-color="#4D7CFF" stop-opacity="0"/>
-                    </radialGradient>
-                    <clipPath id="clipPanel">
-                        <rect x="28" y="28" width="924" height="504" rx="22"/>
-                    </clipPath>
-                </defs>
-
-                <!-- subtle inner frame -->
-                <rect x="28" y="28" width="924" height="504" rx="22" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                <rect x="48" y="48" width="884" height="464" rx="18" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-
-                <g clip-path="url(#clipPanel)">
-                    <!-- grid -->
-                    <g opacity="0.38">
-                        <path d="M90 140H930" stroke="rgba(255,255,255,0.06)"/>
-                        <path d="M90 200H930" stroke="rgba(255,255,255,0.05)"/>
-                        <path d="M90 260H930" stroke="rgba(255,255,255,0.05)"/>
-                        <path d="M90 320H930" stroke="rgba(255,255,255,0.05)"/>
-                        <path d="M90 380H930" stroke="rgba(255,255,255,0.05)"/>
-                        <path d="M90 440H930" stroke="rgba(255,255,255,0.04)"/>
-                        <path d="M190 110V480" stroke="rgba(255,255,255,0.04)"/>
-                        <path d="M320 110V480" stroke="rgba(255,255,255,0.035)"/>
-                        <path d="M450 110V480" stroke="rgba(255,255,255,0.03)"/>
-                        <path d="M580 110V480" stroke="rgba(255,255,255,0.03)"/>
-                        <path d="M710 110V480" stroke="rgba(255,255,255,0.035)"/>
-                        <path d="M840 110V480" stroke="rgba(255,255,255,0.04)"/>
-                    </g>
-
-                    <!-- horizon signal -->
-                    <path d="M70 330 C 220 292, 330 304, 490 318 C 650 332, 760 300, 910 322" stroke="rgba(238,240,255,0.16)" stroke-width="1"/>
-                    <path d="M70 342 C 240 314, 340 326, 490 336 C 650 346, 760 318, 910 336" stroke="url(#lineTeal)" stroke-width="1" opacity="0.9"/>
-
-                    <!-- core ring glow -->
-                    <circle cx="520" cy="292" r="180" fill="url(#ringGlow)"/>
-                    <circle cx="520" cy="292" r="110" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
-                    <circle cx="520" cy="292" r="86" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-
-                    <!-- path network -->
-                    <path class="glow" d="M140 414 C 240 320, 350 280, 458 298 C 580 318, 650 256, 760 214 C 830 186, 884 190, 920 210" stroke="url(#lineBlueViolet)" stroke-width="1.6" stroke-linecap="round"/>
-                    <path class="glow-v" d="M170 168 C 290 250, 390 292, 520 292 C 650 292, 740 252, 860 332" stroke="rgba(123,92,255,0.35)" stroke-width="1.2" stroke-linecap="round"/>
-
-                    <!-- mini bars (no text, just signal) -->
-                    <g opacity="0.8">
-                        <rect x="110" y="110" width="240" height="74" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
-                        <rect x="132" y="152" width="70" height="6" rx="3" fill="rgba(255,255,255,0.14)"/>
-                        <rect x="132" y="164" width="190" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-                        <rect x="132" y="132" width="156" height="6" rx="3" fill="rgba(127,231,255,0.22)"/>
-
-                        <rect x="640" y="110" width="240" height="74" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)"/>
-                        <rect x="662" y="152" width="176" height="6" rx="3" fill="rgba(255,255,255,0.10)"/>
-                        <rect x="662" y="132" width="120" height="6" rx="3" fill="rgba(77,124,255,0.24)"/>
-                        <rect x="662" y="164" width="92" height="6" rx="3" fill="rgba(123,92,255,0.20)"/>
-
-                        <rect x="110" y="462" width="310" height="58" rx="14" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.06)"/>
-                        <rect x="132" y="486" width="266" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
-                        <rect x="132" y="486" width="198" height="7" rx="3.5" fill="rgba(127,231,255,0.20)"/>
-
-                        <rect x="580" y="462" width="300" height="58" rx="14" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.06)"/>
-                        <rect x="602" y="486" width="256" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
-                        <rect x="602" y="486" width="168" height="7" rx="3.5" fill="rgba(77,124,255,0.20)"/>
-                    </g>
-
-                    <!-- nodes -->
-                    <g class="glow">
-                        <circle cx="458" cy="298" r="18" fill="url(#dotTeal)"/>
-                        <circle cx="458" cy="298" r="3.2" fill="#7FE7FF"/>
-                    </g>
-                    <g class="glow-v">
-                        <circle cx="760" cy="214" r="18" fill="url(#dotViolet)"/>
-                        <circle cx="760" cy="214" r="3.2" fill="#7B5CFF"/>
-                    </g>
-                    <g class="glow">
-                        <circle cx="170" cy="168" r="18" fill="url(#dotBlue)"/>
-                        <circle cx="170" cy="168" r="3.2" fill="#4D7CFF"/>
-                    </g>
-                </g>
-            </svg>
-        </div>
-    </div>
     <div class="hero-container">
         <h1>PR for Web3 & FinTech that compounds trust — not noise.</h1>
         <p class="subtext">We help Web3 and FinTech founders become credible market voices trusted by:</p>
@@ -872,6 +815,57 @@
         <p class="one-liner">Yassify is PR at the intersection of Web3 × FinTech × IT.</p>
         <div class="hero-cta-wrapper">
             <button>Request a custom media plan</button>
+        </div>
+        <div class="hero-bento" aria-hidden="true">
+            <div class="bento-grid">
+                <div class="bento-card bento-main">
+                    <div class="bento-label">Credibility Growth</div>
+                    <div class="bento-signal"><span style="width:88%; background: linear-gradient(90deg, var(--accentTeal), var(--accentViolet)); box-shadow: 0 0 18px rgba(127,231,255,0.14);"></span></div>
+                    <svg class="bento-sparkline" viewBox="0 0 360 46" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 36 C 40 34, 58 18, 92 22 C 126 26, 142 10, 176 14 C 210 18, 228 6, 262 10 C 296 14, 316 8, 358 6" stroke="rgba(238,240,255,0.18)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M2 36 C 40 34, 58 18, 92 22 C 126 26, 142 10, 176 14 C 210 18, 228 6, 262 10 C 296 14, 316 8, 358 6" stroke="rgba(127,231,255,0.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="358" cy="6" r="3.5" fill="rgba(127,231,255,0.95)"/>
+                    </svg>
+                    <div class="bento-chip"><span class="bento-dot"></span> Compounding signal</div>
+                </div>
+
+                <div class="bento-card bento-small">
+                    <div class="bento-label">Search Visibility</div>
+                    <div class="bento-signal"><span style="width:78%; background: var(--accentTeal); box-shadow: 0 0 18px rgba(127,231,255,0.14);"></span></div>
+                    <svg class="bento-sparkline" viewBox="0 0 360 46" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 30 C 58 34, 86 20, 120 18 C 160 16, 176 26, 210 22 C 242 18, 264 10, 296 12 C 326 14, 340 10, 354 8" stroke="rgba(127,231,255,0.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="354" cy="8" r="3.5" fill="rgba(127,231,255,0.95)"/>
+                    </svg>
+                </div>
+
+                <div class="bento-card bento-mid">
+                    <div class="bento-label">AI Citations</div>
+                    <div class="bento-signal"><span style="width:72%; background: linear-gradient(90deg, var(--accentBlue), var(--accentViolet)); box-shadow: 0 0 18px rgba(123,92,255,0.14);"></span></div>
+                    <svg class="bento-sparkline" viewBox="0 0 360 46" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 34 C 58 34, 76 24, 112 26 C 148 28, 168 18, 202 18 C 236 18, 260 10, 292 12 C 320 14, 336 10, 354 10" stroke="rgba(123,92,255,0.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="354" cy="10" r="3.5" fill="rgba(123,92,255,0.95)"/>
+                    </svg>
+                </div>
+
+                <div class="bento-card bento-mid" style="grid-column: span 7;">
+                    <div class="bento-label">Media Placements</div>
+                    <div class="bento-signal"><span style="width:85%; background: var(--accentBlue); box-shadow: 0 0 18px rgba(77,124,255,0.14);"></span></div>
+                    <svg class="bento-sparkline" viewBox="0 0 360 46" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 38 C 56 34, 82 28, 114 30 C 150 32, 170 22, 206 20 C 244 18, 262 26, 296 20 C 328 14, 340 18, 354 12" stroke="rgba(77,124,255,0.55)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <circle cx="354" cy="12" r="3.5" fill="rgba(77,124,255,0.95)"/>
+                    </svg>
+                </div>
+
+                <div class="bento-card bento-small" style="grid-column: span 5;">
+                    <div class="bento-label">White-Label Reports</div>
+                    <div class="bento-signal"><span style="width:92%; background: rgba(238,240,255,0.22);"></span></div>
+                    <svg class="bento-sparkline" viewBox="0 0 360 46" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 30 H350" stroke="rgba(238,240,255,0.12)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10 18 H290" stroke="rgba(238,240,255,0.10)" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M10 42 H250" stroke="rgba(238,240,255,0.08)" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
         </div>
     </div>
 </section>
