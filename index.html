@@ -28,7 +28,11 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg);
+            background:
+                radial-gradient(1200px 800px at 12% 82%, rgba(30, 50, 100, 0.38), transparent 60%),
+                radial-gradient(900px 700px at 86% 14%, rgba(123, 92, 255, 0.32), transparent 58%),
+                radial-gradient(700px 500px at 52% 48%, rgba(127, 231, 255, 0.08), transparent 62%),
+                var(--bg);
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
@@ -57,6 +61,23 @@
             opacity: 0.6;
         }
 
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.08;
+            mix-blend-mode: overlay;
+            background-image: repeating-radial-gradient(circle at 50% 50%,
+                rgba(255, 255, 255, 0.12) 0px,
+                rgba(255, 255, 255, 0.00) 1px,
+                rgba(255, 255, 255, 0.00) 3px);
+        }
+
         /* Top Navigation */
         nav {
             position: fixed;
@@ -64,14 +85,14 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 24px 32px;
+            padding: 16px 24px;
             background: rgba(7, 10, 18, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--divider);
         }
 
         nav .nav-container {
-            max-width: 1120px;
+            max-width: 960px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -91,7 +112,7 @@
         }
 
         nav a {
-            color: var(--muted);
+            color: var(--text-muted);
             text-decoration: none;
             font-size: 16px;
             transition: color 0.2s;
@@ -120,11 +141,11 @@
         /* Hero Section */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 92vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 32px 80px;
+            padding: 144px 24px 96px;
             overflow: hidden;
         }
 
@@ -242,17 +263,19 @@
             filter: brightness(1.08);
         }
 
-        /* Sections */
-        section {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 120px 32px;
-            position: relative;
+        .hero button:focus-visible,
+        nav .cta-nav:focus-visible,
+        .final-cta button:focus-visible {
+            outline: 2px solid rgba(127, 231, 255, 0.55);
+            outline-offset: 3px;
         }
 
-        /* Skeuomorphic text shadows for depth */
-        section h2 {
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        /* Sections */
+        section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 72px 24px;
+            position: relative;
         }
 
         section h2 {
@@ -324,16 +347,20 @@
         .reporting-tabs {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            gap: 12px;
             margin: 32px 0;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px;
         }
 
         .reporting-tab {
             display: flex;
             flex-direction: column;
+            padding: 10px 10px 12px;
+            border-radius: 12px;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .reporting-tab-label {
@@ -347,6 +374,14 @@
 
         .reporting-tab.active .reporting-tab-label {
             color: var(--text);
+        }
+
+        .reporting-tab.active {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .reporting-tab:hover {
+            background: rgba(255, 255, 255, 0.02);
         }
 
         .reporting-progress {
@@ -366,6 +401,7 @@
         .reporting-progress-fill.placements {
             background: var(--accentBlue);
             width: 75%;
+            box-shadow: 0 0 18px rgba(77, 124, 255, 0.22);
         }
 
         .reporting-tab.active .reporting-progress-fill.placements {
@@ -375,6 +411,7 @@
         .reporting-progress-fill.visibility {
             background: var(--accentTeal);
             width: 65%;
+            box-shadow: 0 0 18px rgba(127, 231, 255, 0.18);
         }
 
         .reporting-tab.active .reporting-progress-fill.visibility {
@@ -384,6 +421,7 @@
         .reporting-progress-fill.citations {
             background: linear-gradient(90deg, var(--accentBlue), var(--accentViolet));
             width: 60%;
+            box-shadow: 0 0 18px rgba(123, 92, 255, 0.18);
         }
 
         .reporting-tab.active .reporting-progress-fill.citations {
@@ -393,6 +431,7 @@
         .reporting-progress-fill.growth {
             background: linear-gradient(90deg, var(--accentTeal), var(--accentViolet));
             width: 70%;
+            box-shadow: 0 0 18px rgba(127, 231, 255, 0.12);
         }
 
         .reporting-tab.active .reporting-progress-fill.growth {
@@ -431,11 +470,31 @@
             border-radius: 16px;
             padding: 24px;
             position: relative;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.045);
         }
 
         .pricing-card.core {
             border: 1px solid rgba(123, 92, 255, 0.55);
             transform: scale(1.03);
+            box-shadow:
+                0 18px 60px rgba(123, 92, 255, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg,
+                rgba(123, 92, 255, 0.10) 0%,
+                rgba(255, 255, 255, 0.04) 55%,
+                rgba(255, 255, 255, 0.035) 100%);
+        }
+
+        .pricing-card.core:hover {
+            transform: scale(1.03) translateY(-2px);
+            border-color: rgba(123, 92, 255, 0.70);
         }
 
         .pricing-card.core::before {
@@ -497,7 +556,10 @@
         /* Final CTA */
         .final-cta {
             text-align: center;
-            padding: 100px 32px;
+            padding: 72px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
         }
 
         .final-cta h2 {
@@ -550,11 +612,11 @@
 
             .hero {
                 min-height: 90vh;
-                padding: 100px 20px 60px;
+                padding: 120px 20px 72px;
             }
 
             section {
-                padding: 80px 20px;
+                padding: 64px 20px;
             }
 
             .reporting-tabs {
@@ -575,7 +637,7 @@
         <div class="logo">Yassify</div>
         <div class="nav-links">
             <a href="#pricing">Pricing</a>
-            <a href="#request" class="cta-nav">Request plan</a>
+            <a href="#request" class="cta-nav">Request a custom media plan</a>
         </div>
     </div>
 </nav>
